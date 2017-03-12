@@ -19,7 +19,8 @@
             android:padding="7dp"
             android:src="@mipmap/ic_launcher"
             ui:enableRotate="false"
-            ui:syncClicked="true" />
+            ui:syncClicked="true"
+            android:visibility="gone"/>
 
     </RelativeLayout>
 
@@ -56,5 +57,11 @@
         android:textColor="@color/main_text_color"
         android:textSize="18sp" />
 
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/main_text_color"
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

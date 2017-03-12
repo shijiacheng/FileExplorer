@@ -40,16 +40,12 @@ public class DirectoryActivity extends BaseActivity {
     // private String mRootPath = null;
     // String
     private File mCurrentPathFile = null;
-    private int viewModel;
-
-    private String type;
     private String suffitString = "doc,docx,ppt,pptx,txt,xls,xlsx,gif,apk,txt,rar,zip,pdf,rm,rmvb,flv,mov,amv,3gp,avi,mp4,wmv,wav,mp3,wav,wma,png,jpg,jpeg,bmp";
 
     @BindView(R.id.ll_file_nav)
     LinearLayout ll_file_nav;//面包屑导航栏
 
     private String defaultRootFolderName;
-    private boolean isClassGroup;
 
     /**
      * 列表页地址面包屑导航栏

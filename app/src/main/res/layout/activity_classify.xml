@@ -1,8 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_classify"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_directory"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-</RelativeLayout>
+    <include layout="@layout/widget_header_view" />
+
+
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <ListView
+            android:id="@+id/files_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:cacheColorHint="#00000000"
+            android:dividerHeight="0.5dp"
+            android:listSelector="@color/transparent"
+             >
+        </ListView>
+
+        <TextView
+            android:id="@+id/files_nofile"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFFFF"
+            android:gravity="center"
+            android:text="mmmmm"
+            android:textColor="@color/main_text_color"
+            android:textSize="16sp" />
+
+
+    </FrameLayout>
+
+
+</LinearLayout>

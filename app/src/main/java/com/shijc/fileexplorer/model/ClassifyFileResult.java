@@ -15,6 +15,14 @@ public class ClassifyFileResult {
     public static final int ZIP = 5;
     public static final int APK = 6;
 
+    public ClassifyFileResult(int key, String name) {
+        this.key = key;
+        this.name = name;
+    }
+
+    public ClassifyFileResult() {
+    }
+
     private int key;
     private String name;
     private long count;
