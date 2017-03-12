@@ -35,34 +35,48 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="10dp"
+        >
 
         <GridView
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             android:id="@+id/gv_file"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="300dp"
             android:fadingEdge="none"
             android:gravity="center"
-            android:horizontalSpacing="25dp"
             android:listSelector="@android:color/transparent"
             android:numColumns="3"
             android:scrollbars="none"
             android:scrollingCache="false"
             android:stretchMode="columnWidth"
-            android:verticalSpacing="28dp">
+            android:verticalSpacing="30dp">
 
         </GridView>
     </LinearLayout>
 
     <LinearLayout
-
         android:id="@+id/ll_sdcard"
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/main_bg_gray"/>
         <TextView
+            android:layout_margin="10dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="SD卡"/>
+            android:layout_height="40dp"
+            android:text="Mobile Storage"
+            android:gravity="center"
+            android:textSize="@dimen/font_h4"
+            android:textColor="@color/main_text_color"/>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="@color/main_bg_gray"/>
     </LinearLayout>
 
 </LinearLayout>

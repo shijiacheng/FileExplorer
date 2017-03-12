@@ -23,13 +23,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="pics"
+            android:textColor="@color/main_text_color"
             android:textSize="16sp"/>
         <TextView
             android:id="@+id/tv_size"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="15MB"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:visibility="gone"/>
     </LinearLayout>
     
 

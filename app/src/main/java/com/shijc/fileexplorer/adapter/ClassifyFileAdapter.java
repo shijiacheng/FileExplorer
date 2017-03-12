@@ -65,6 +65,28 @@ public class ClassifyFileAdapter extends BaseAdapter {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
+        viewHolder.tvTitle.setText(result.getName());
+        switch (result.getKey()){
+            case ClassifyFileResult.PICTURE:
+                viewHolder.ivCover.setImageResource(R.drawable.cover_picture);
+                break;
+            case ClassifyFileResult.MUSIC:
+                viewHolder.ivCover.setImageResource(R.drawable.cover_music);
+                break;
+            case ClassifyFileResult.VIDEO:
+                viewHolder.ivCover.setImageResource(R.drawable.cover_video);
+                break;
+            case ClassifyFileResult.DOCUMENT:
+                viewHolder.ivCover.setImageResource(R.drawable.cover_document);
+                break;
+            case ClassifyFileResult.ZIP:
+                viewHolder.ivCover.setImageResource(R.drawable.cover_zip);
+                break;
+            case ClassifyFileResult.APK:
+                viewHolder.ivCover.setImageResource(R.drawable.cover_apk);
+                break;
+        }
+
         viewHolder.llClassifyBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

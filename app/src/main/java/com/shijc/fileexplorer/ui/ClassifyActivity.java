@@ -139,6 +139,7 @@ public class ClassifyActivity extends BaseActivity {
         setContentView(R.layout.activity_classify);
         mContext = this;
 
+
         Intent intent = getIntent();
         fileType = intent.getIntExtra(Constants.KEY_EXTRA_FILE_TYPE,0);
 

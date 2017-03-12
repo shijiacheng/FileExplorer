@@ -49,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="15dp"
         android:layout_toRightOf="@+id/layout_left_op"
         android:ellipsize="end"
         android:gravity="center"
@@ -61,7 +61,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
-        android:background="@color/main_text_color"
+        android:background="@color/main_bg_gray"
         android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

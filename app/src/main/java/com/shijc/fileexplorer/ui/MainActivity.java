@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.shijc.fileexplorer.R;
 import com.shijc.fileexplorer.adapter.ClassifyFileAdapter;
@@ -27,6 +28,8 @@ public class MainActivity extends BaseActivity {
     GridView gvClassifyFile;
     @BindView(R.id.ll_sdcard)
     LinearLayout llSdcard;
+    @BindView(R.id.widget_header_title)
+    TextView headerTitle;
 
 
     private Context mContext;
@@ -45,15 +48,17 @@ public class MainActivity extends BaseActivity {
 
     }
 
-    private void initViews(){
+    private void initViews() {
+        headerTitle.setText("My File");
+
         mAdapter = new ClassifyFileAdapter(mContext);
         gvClassifyFile.setAdapter(mAdapter);
 
         mAdapter.setListener(new ClassifyFileAdapter.ClickListener() {
             @Override
             public void onClick(ClassifyFileResult result) {
-                Intent intent = new Intent(mContext,ClassifyActivity.class);
-                intent.putExtra(Constants.KEY_EXTRA_FILE_TYPE,result.getKey());
+                Intent intent = new Intent(mContext, ClassifyActivity.class);
+                intent.putExtra(Constants.KEY_EXTRA_FILE_TYPE, result.getKey());
                 startActivity(intent);
             }
         });
@@ -61,7 +66,7 @@ public class MainActivity extends BaseActivity {
         llSdcard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext,DirectoryActivity.class);
+                Intent intent = new Intent(mContext, DirectoryActivity.class);
                 startActivity(intent);
             }
         });
@@ -69,7 +74,7 @@ public class MainActivity extends BaseActivity {
         llSerachBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext,SearchFileActivity.class);
+                Intent intent = new Intent(mContext, SearchFileActivity.class);
                 startActivity(intent);
             }
         });
@@ -77,14 +82,14 @@ public class MainActivity extends BaseActivity {
     }
 
 
-    private void initDatas(){
+    private void initDatas() {
         lists = new ArrayList<>();
-        lists.add(new ClassifyFileResult(ClassifyFileResult.PICTURE,"照片"));
-        lists.add(new ClassifyFileResult(ClassifyFileResult.MUSIC,"music"));
-        lists.add(new ClassifyFileResult(ClassifyFileResult.VIDEO,"video"));
-        lists.add(new ClassifyFileResult(ClassifyFileResult.DOCUMENT,"docs"));
-        lists.add(new ClassifyFileResult(ClassifyFileResult.ZIP,"zips"));
-        lists.add(new ClassifyFileResult(ClassifyFileResult.APK,"apks"));
+        lists.add(new ClassifyFileResult(ClassifyFileResult.PICTURE, "照片"));
+        lists.add(new ClassifyFileResult(ClassifyFileResult.MUSIC, "music"));
+        lists.add(new ClassifyFileResult(ClassifyFileResult.VIDEO, "video"));
+        lists.add(new ClassifyFileResult(ClassifyFileResult.DOCUMENT, "docs"));
+        lists.add(new ClassifyFileResult(ClassifyFileResult.ZIP, "zips"));
+        lists.add(new ClassifyFileResult(ClassifyFileResult.APK, "apks"));
 
         mAdapter.setList(lists);
     }
