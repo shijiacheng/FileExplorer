@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RotateImageView">
+        <attr name="is_width_fill_screen" format="boolean" />
+        <attr name="is_height_fill_screen" format="boolean" />
+        <attr name="enableRotate" format="boolean" />
+        <attr name="syncClicked" format="boolean" />
+    </declare-styleable>
+</resources>

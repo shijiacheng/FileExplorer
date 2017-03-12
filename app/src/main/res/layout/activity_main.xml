@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_bg_color"
+    android:orientation="vertical">
+
+    <include layout="@layout/widget_header_view" />
+
+    <LinearLayout
+        android:id="@+id/ll_serach_box"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search file"
+            android:textColor="@color/main_text_color"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <GridView
+            android:id="@+id/gv_file"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:fadingEdge="none"
+            android:gravity="center"
+            android:horizontalSpacing="25dp"
+            android:listSelector="@android:color/transparent"
+            android:numColumns="3"
+            android:scrollbars="none"
+            android:scrollingCache="false"
+            android:stretchMode="columnWidth"
+            android:verticalSpacing="28dp">
+
+        </GridView>
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:id="@+id/ll_sdcard"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="SD卡"/>
+    </LinearLayout>
+
+</LinearLayout>

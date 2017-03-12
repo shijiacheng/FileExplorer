@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">FileExplorer</string>
+    <string name="sdcard_rootpath_name">内置存储卡</string>
+</resources>

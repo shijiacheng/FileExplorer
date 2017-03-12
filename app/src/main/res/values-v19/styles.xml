@@ -1,0 +1,17 @@
+<resources>
+
+    <!--
+        Base application theme for API 14+. This theme completely replaces
+        AppBaseTheme from BOTH res/values/styles.xml and
+        res/values-v11/styles.xml on API 14+ devices.
+    -->
+    <style name="AppBaseTheme" parent="android:Theme.NoTitleBar">
+      <!--  <item name="colorPrimaryDark">@color/green</item>
+       <item name="colorPrimary">@color/green</item> -->
+    </style>
+    <style name="AppTheme" parent="android:Theme.NoTitleBar">
+        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+        <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+</resources>
