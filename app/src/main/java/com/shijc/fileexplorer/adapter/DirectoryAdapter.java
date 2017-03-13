@@ -121,7 +121,7 @@ public class DirectoryAdapter extends BaseAdapter {
                 mListHolder.divider_size_time.setVisibility(View.GONE);
                 mListHolder.mfileSelect.setVisibility(View.GONE);
                 mListHolder.mfileSize.setText("");
-                mListHolder.mfileIcon.setBackgroundResource(R.drawable.icon_file_folder);
+                mListHolder.mfileIcon.setBackgroundResource(R.drawable.icon_folder);
             }
         }else{
             if (f.isFile()) {
@@ -140,7 +140,7 @@ public class DirectoryAdapter extends BaseAdapter {
                 mListHolder.divider_size_time.setVisibility(View.GONE);
                 mListHolder.mfileSelect.setVisibility(View.GONE);
                 mListHolder.mfileSize.setText("");
-                mListHolder.mfileIcon.setBackgroundResource(R.drawable.icon_file_folder);
+                mListHolder.mfileIcon.setBackgroundResource(R.drawable.icon_folder);
 
             }
         }
@@ -216,7 +216,7 @@ public class DirectoryAdapter extends BaseAdapter {
             }
         }
         if (bitmap == null) {
-            bitmap = BitmapFactory.decodeResource(mcontext.getResources(), R.drawable.file_icon_unknow);
+            bitmap = BitmapFactory.decodeResource(mcontext.getResources(), R.drawable.icon_unknown);
         }
         return bitmap;
     }

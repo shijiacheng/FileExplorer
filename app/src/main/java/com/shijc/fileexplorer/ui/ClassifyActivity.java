@@ -21,13 +21,24 @@ import com.shijc.fileexplorer.common.Constants;
 import com.shijc.fileexplorer.common.HttpConnectException;
 import com.shijc.fileexplorer.model.ClassifyFileResult;
 import com.shijc.fileexplorer.util.CollectionUtils;
+import com.shijc.fileexplorer.widget.RotateImageView;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.BindView;
+
 public class ClassifyActivity extends BaseActivity {
 
+    @BindView(R.id.widget_header_back)
+    RotateImageView headerBack;
+    @BindView(R.id.widget_header_title)
+    TextView headerTitle;
+    @BindView(R.id.files_list)
+    ListView mListView;
+    @BindView(R.id.files_nofile)
+    TextView mNoTextView;
     private ContentResolver mContentResolver;
     private Context mContext;
 
@@ -37,20 +48,41 @@ public class ClassifyActivity extends BaseActivity {
     private List<File> mfiles = null;
     private ArrayList<String> mSelectedFiles = null;
     private DirectoryAdapter madapter = null;
-    private ListView mListView;
-    private TextView mNoTextView;
     // String
     private String mSDCardPath = null;
 
 
+    private void initView() {
 
-
-
-    private void initUI() {
-        // adView = new AdView(this, AdSize.BANNER,
-        // getString(R.string.MY_AD_UNIT_ID));
-        mListView = (ListView) findViewById(R.id.files_list);
-        mNoTextView = (TextView) findViewById(R.id.files_nofile);
+        headerBack.setVisibility(View.VISIBLE);
+        String title ="";
+        switch (fileType) {
+            case ClassifyFileResult.PICTURE:
+                title = "照片";
+                break;
+            case ClassifyFileResult.MUSIC:
+                title = "music";
+                break;
+            case ClassifyFileResult.VIDEO:
+                title = "video";
+                break;
+            case ClassifyFileResult.DOCUMENT:
+                title = "docs";
+                break;
+            case ClassifyFileResult.ZIP:
+                title = "zips";
+                break;
+            case ClassifyFileResult.APK:
+                title = "apks";
+                break;
+        }
+        headerTitle.setText(title);
+        headerBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         mfiles = new ArrayList<File>();
         mSelectedFiles = new ArrayList<String>();
@@ -59,9 +91,9 @@ public class ClassifyActivity extends BaseActivity {
         mListView.setAdapter(madapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 File mselectedFile = madapter.getItem(position);
-                if (mselectedFile != null){
+                if (mselectedFile != null) {
 //                    if (viewModel == MODEL_PREVIEW){
 //                        if (mselectedFile.isFile())
 //                            FileUtils.openLocalFile(mselectedFile.getPath(), FileExp.this);
@@ -76,10 +108,6 @@ public class ClassifyActivity extends BaseActivity {
         });
         mListView.setEmptyView(mNoTextView);
     }
-
-
-
-
 
 
     private void open(File f) {
@@ -131,8 +159,6 @@ public class ClassifyActivity extends BaseActivity {
     }
 
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -141,14 +167,14 @@ public class ClassifyActivity extends BaseActivity {
 
 
         Intent intent = getIntent();
-        fileType = intent.getIntExtra(Constants.KEY_EXTRA_FILE_TYPE,0);
+        fileType = intent.getIntExtra(Constants.KEY_EXTRA_FILE_TYPE, 0);
 
         mContentResolver = mContext.getContentResolver();
 
 
         if (mSDCardPath == null)
             checkEnvironment();
-        initUI();
+        initView();
 
         deleteAllItems();
         getFilesByType(fileType);
@@ -158,9 +184,10 @@ public class ClassifyActivity extends BaseActivity {
      * 获取分类的数据
      */
     private BaseTask<Void, List<File>> getFilesTask;
-    private void getFilesByType(final int type){
 
-        if (getFilesTask !=null && getFilesTask.getStatus() == BaseTask.Status.RUNNING) {
+    private void getFilesByType(final int type) {
+
+        if (getFilesTask != null && getFilesTask.getStatus() == BaseTask.Status.RUNNING) {
             return;
         }
 
@@ -169,7 +196,7 @@ public class ClassifyActivity extends BaseActivity {
             protected List<File> doInBackground(Void... params) {
                 List<File> result = null;
                 try {
-                    switch (type){
+                    switch (type) {
                         case ClassifyFileResult.PICTURE:
                             break;
                         case ClassifyFileResult.MUSIC:
@@ -198,7 +225,7 @@ public class ClassifyActivity extends BaseActivity {
         getFilesTask.setTaskListener(new BaseTask.TaskListener<List<File>>() {
             @Override
             public void onSucess(List<File> result) {
-                if (!CollectionUtils.isEmpty(result)){
+                if (!CollectionUtils.isEmpty(result)) {
                     mfiles.addAll(result);
                     madapter.notifyDataSetChanged();
                 }
@@ -261,12 +288,10 @@ public class ClassifyActivity extends BaseActivity {
         Cursor cursor = mContentResolver.query(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, projection, null, null, MediaStore.Audio.AudioColumns.DATE_MODIFIED + " desc");
 
 
-
         while (cursor.moveToNext()) {
 
 
             String filePath = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.AudioColumns.DATA));
-
 
 
             File fileItem = new File(filePath);
@@ -295,12 +320,9 @@ public class ClassifyActivity extends BaseActivity {
         Cursor cursor = mContentResolver.query(MediaStore.Video.Media.EXTERNAL_CONTENT_URI, projection, null, null, MediaStore.Video.VideoColumns.DATE_MODIFIED + " desc");
 
 
-
-
         while (cursor.moveToNext()) {
 
             String filePath = cursor.getString(cursor.getColumnIndex(MediaStore.Video.VideoColumns.DATA));
-
 
 
             File fileItem = new File(filePath);

@@ -6,5 +6,6 @@
     <color name="main_bg_color">#fefefe</color>
     <color name="main_text_color">#353535</color>
     <color name="main_bg_gray">#d5d5d5</color>
+    <color name="main_text_gray">#bababa</color>
     <color name="transparent">#00000000</color>
 </resources>

@@ -17,6 +17,7 @@ import com.shijc.fileexplorer.R;
 import com.shijc.fileexplorer.adapter.DirectoryAdapter;
 import com.shijc.fileexplorer.base.BaseActivity;
 import com.shijc.fileexplorer.util.CollectionUtils;
+import com.shijc.fileexplorer.widget.RotateImageView;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -30,17 +31,21 @@ import butterknife.BindView;
 
 public class DirectoryActivity extends BaseActivity {
 
+    @BindView(R.id.widget_header_back)
+    RotateImageView headerBack;
+    @BindView(R.id.widget_header_title)
+    TextView headerTitle;
+    @BindView(R.id.files_list)
+    ListView mListView;
+    @BindView(R.id.files_nofile)
+    TextView mNoTextView;
     private List<File> mfiles = null;
     private ArrayList<String> mSelectedFiles = null;
     private DirectoryAdapter madapter = null;
-    private ListView mListView;
-    private TextView mNoTextView;
     // String
     private String mSDCardPath = null;
-    // private String mRootPath = null;
     // String
     private File mCurrentPathFile = null;
-    private String suffitString = "doc,docx,ppt,pptx,txt,xls,xlsx,gif,apk,txt,rar,zip,pdf,rm,rmvb,flv,mov,amv,3gp,avi,mp4,wmv,wav,mp3,wav,wma,png,jpg,jpeg,bmp";
 
     @BindView(R.id.ll_file_nav)
     LinearLayout ll_file_nav;//面包屑导航栏
@@ -50,14 +55,14 @@ public class DirectoryActivity extends BaseActivity {
     /**
      * 列表页地址面包屑导航栏
      */
-    private void addNavView(String folderName,String folderId) {
+    private void addNavView(String folderName, String folderId) {
         LinearLayout.LayoutParams layoutparams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         layoutparams.setMargins(10, 0, 0, 0);
         layoutparams.gravity = Gravity.CENTER_VERTICAL;
         TextView tv = new TextView(DirectoryActivity.this);
         tv.setLayoutParams(layoutparams);
-        tv.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
-        tv.setTextColor(getResources().getColor(R.color.main_text_color));
+        tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+        tv.setTextColor(getResources().getColor(R.color.main_text_gray));
         tv.setTag(folderId);
         tv.setText(folderName + " >");
         tv.setOnClickListener(new View.OnClickListener() {
@@ -65,7 +70,7 @@ public class DirectoryActivity extends BaseActivity {
             public void onClick(View v) {
                 String tmpId = (String) v.getTag();
                 int index = ll_file_nav.indexOfChild(v);
-                ll_file_nav.removeViews(index+1, ll_file_nav.getChildCount() -index-1);
+                ll_file_nav.removeViews(index + 1, ll_file_nav.getChildCount() - index - 1);
 
                 File f = new File(tmpId);
                 showFilesInFolder(f);
@@ -81,16 +86,20 @@ public class DirectoryActivity extends BaseActivity {
         if (mSDCardPath == null)
             checkEnvironment();
         defaultRootFolderName = getString(R.string.sdcard_rootpath_name);
-        initUI(bundle);
+        initView();
         initData();
     }
 
-    public void initUI(Bundle savedInstanceState) {
-        // adView = new AdView(this, AdSize.BANNER,
-        // getString(R.string.MY_AD_UNIT_ID));
-        mListView = (ListView) findViewById(R.id.files_list);
-        mNoTextView = (TextView) findViewById(R.id.files_nofile);
+    public void initView() {
 
+        headerBack.setVisibility(View.VISIBLE);
+        headerTitle.setText("Directory");
+        headerBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         mfiles = new ArrayList<File>();
         mSelectedFiles = new ArrayList<String>();
         madapter = new DirectoryAdapter(this, mfiles, mSelectedFiles);
@@ -98,9 +107,9 @@ public class DirectoryActivity extends BaseActivity {
         mListView.setAdapter(madapter);
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position,long id) {
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 File mselectedFile = madapter.getItem(position);
-                if (mselectedFile != null){
+                if (mselectedFile != null) {
 //                    if (viewModel == MODEL_PREVIEW){
 //                        if (mselectedFile.isFile())
 //                            FileUtils.openLocalFile(mselectedFile.getPath(), FileExp.this);
@@ -115,7 +124,6 @@ public class DirectoryActivity extends BaseActivity {
         });
         mListView.setEmptyView(mNoTextView);
     }
-
 
 
     private void initData() {
@@ -137,7 +145,7 @@ public class DirectoryActivity extends BaseActivity {
         }
     }
 
-    private void showFilesInFolder(File folder){
+    private void showFilesInFolder(File folder) {
         deleteAllItems();
         mCurrentPathFile = folder;
 
@@ -186,10 +194,10 @@ public class DirectoryActivity extends BaseActivity {
             }
 
         } else if (f.isDirectory()) {
-            if(mSDCardPath.equals(f.getAbsolutePath()))
-                addNavView(defaultRootFolderName,f.getAbsolutePath());
+            if (mSDCardPath.equals(f.getAbsolutePath()))
+                addNavView(defaultRootFolderName, f.getAbsolutePath());
             else
-                addNavView(f.getName(),f.getAbsolutePath());
+                addNavView(f.getName(), f.getAbsolutePath());
             showFilesInFolder(f);
         }
     }
@@ -200,16 +208,17 @@ public class DirectoryActivity extends BaseActivity {
     private void addItem(File f) {
         if (f.isDirectory()) {
             mfiles.add(f);
-        }
-        else {
+        } else {
             if (f.isFile()
                     && f.getAbsolutePath().lastIndexOf(".") != -1
-                    && suffitString.contains(f.getAbsolutePath().substring(f.getAbsolutePath().lastIndexOf(".") + 1).toLowerCase())) {
+                    ) {
                 mfiles.add(f);
             }
 
         }
     }
+
+    //&& suffitString.contains(f.getAbsolutePath().substring(f.getAbsolutePath().lastIndexOf(".") + 1).toLowerCase()
 
     private void deleteAllItems() {
         mfiles.clear();
@@ -237,10 +246,10 @@ public class DirectoryActivity extends BaseActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-		/*if (viewModel == MODEL_PREVIEW)
-			return super.onKeyDown(keyCode,event);*/
+        /*if (viewModel == MODEL_PREVIEW)
+            return super.onKeyDown(keyCode,event);*/
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (mCurrentPathFile==null) {
+            if (mCurrentPathFile == null) {
                 return true;
             }
             if (mSDCardPath.equals(mCurrentPathFile.getAbsolutePath())) {
@@ -262,20 +271,21 @@ public class DirectoryActivity extends BaseActivity {
     private class FileComparator implements Comparator<File> {
 
         public int compare(File file1, File file2) {
-            // 文件夹排在前面
-            if (file1.isDirectory() && !file2.isDirectory()) {
-                return -1;
-            } else if (!file1.isDirectory() && file2.isDirectory()) {
-                return 1;
-            } else {//二者都是文件夹 或者 二者都是文件时，按时间降序排
-                long dis = file1.lastModified()-file2.lastModified();
-                if(dis > 0)//
+
+
+            if (file1.isDirectory() == true && file2.isDirectory() == true) { // 再比较文件夹
+                return file1.getName().compareToIgnoreCase(file2.getName());
+            } else {
+                if ((file1.isDirectory() && !file2.isDirectory()) == true) {
                     return -1;
-                else if(dis < 0)
+                } else if ((file2.isDirectory() && !file1.isDirectory()) == true) {
                     return 1;
-                else
-                    return 0;
+                } else {
+                    return file1.getName().compareToIgnoreCase(file2.getName());// 最后比较文件
+                }
             }
+
+
         }
     }
 }

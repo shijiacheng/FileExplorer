@@ -3,26 +3,25 @@
     android:id="@+id/activity_directory"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@color/main_bg_color">
 
     <include layout="@layout/widget_header_view" />
 
 
-
-
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent">
 
         <ListView
             android:id="@+id/files_list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:cacheColorHint="#00000000"
-            android:dividerHeight="0.5dp"
-            android:listSelector="@color/transparent"
-             >
-        </ListView>
+            android:cacheColorHint="@null"
+            android:divider="@null"
+            android:dividerHeight="3dp"
+            android:listSelector="@android:color/transparent"
+            android:scrollbars="none"></ListView>
 
         <TextView
             android:id="@+id/files_nofile"

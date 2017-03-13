@@ -3,64 +3,83 @@
     android:id="@+id/vw1"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:descendantFocusability="blocksDescendants"
-    android:orientation="horizontal" >
-
-    <Button
-        android:id="@+id/listview_select"
-        android:layout_width="25dip"
-        android:layout_height="25dip"
-        android:layout_gravity="center_vertical"
-        android:clickable="false"
-        android:visibility="gone"
-        />
-
-    <ImageView
-        android:id="@+id/listview_fileicon"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_gravity="center"
-        android:contentDescription="@string/app_name"
-        android:scaleType="centerInside" />
+    android:orientation="vertical">
 
     <LinearLayout
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:orientation="vertical" >
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/listview_select"
+            android:layout_width="25dip"
+            android:layout_height="25dip"
+            android:layout_gravity="center_vertical"
+            android:clickable="false"
+            android:visibility="gone" />
 
-        <TextView
-            android:id="@+id/listview_filename"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:ellipsize="middle"
-            android:singleLine="true"
-/>
+        <ImageView
+            android:id="@+id/listview_fileicon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:contentDescription="@string/app_name"
+            android:scaleType="centerInside" />
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_vertical" >
+            android:layout_gravity="center_vertical"
+
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/listview_filesize"
+                android:id="@+id/listview_filename"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:ellipsize="middle"
+                android:textColor="@color/main_text_color"
+                android:textSize="@dimen/font_h4"
+                android:lines="1" />
+
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-/>
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-            <View
-                android:id="@+id/divider_size_time"
-                android:layout_width="1px"
-                android:layout_height="15dp"
-/>
+                <TextView
+                    android:id="@+id/listview_filesize"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/main_text_gray"
+                    android:textSize="@dimen/font_h5"/>
 
-            <TextView
-                android:id="@+id/listview_filetime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
- />
+                <View
+                    android:layout_marginLeft="@dimen/padding_small"
+                    android:layout_marginRight="@dimen/padding_small"
+                    android:id="@+id/divider_size_time"
+                    android:layout_width="1dp"
+                    android:layout_height="12dp"
+                    android:background="@color/main_text_gray" />
+
+                <TextView
+                    android:id="@+id/listview_filetime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/main_text_gray"
+                    android:textSize="@dimen/font_h5"/>
+            </LinearLayout>
         </LinearLayout>
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/main_bg_gray"/>
 
 </LinearLayout>

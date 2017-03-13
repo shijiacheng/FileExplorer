@@ -73,33 +73,33 @@ public class FileUtils {
     public static Bitmap getFileBm(Context cxt, String suffix) {
         if ("pdf".equals(suffix)) {
             return BitmapFactory.decodeResource(cxt.getResources(),
-                    R.drawable.icon_file_pdf);
+                    R.drawable.icon_pdf);
         } else if ("ppt".equalsIgnoreCase(suffix)
                 || "pptx".equalsIgnoreCase(suffix)) {
             return BitmapFactory.decodeResource(cxt.getResources(),
-                    R.drawable.icon_file_ppt);
+                    R.drawable.icon_ppt);
         } else if ("xls".equalsIgnoreCase(suffix)
                 || "xlsx".equalsIgnoreCase(suffix)) {
             return BitmapFactory.decodeResource(cxt.getResources(),
-                    R.drawable.icon_file_xls);
+                    R.drawable.icon_excel);
         } else if ("doc".equalsIgnoreCase(suffix)
                 || "docx".equalsIgnoreCase(suffix)) {
             return BitmapFactory.decodeResource(cxt.getResources(),
-                    R.drawable.icon_file_doc);
+                    R.drawable.icon_word);
         } else if ("txt".equalsIgnoreCase(suffix)) {
             return BitmapFactory.decodeResource(cxt.getResources(),
-                    R.drawable.icon_file_txt);
+                    R.drawable.icon_txt);
         } else if ("rar".equalsIgnoreCase(suffix)
                 || "zip".equalsIgnoreCase(suffix)) {
             return BitmapFactory.decodeResource(cxt.getResources(),
-                    R.drawable.icon_file_rar);
+                    R.drawable.icon_zip);
         } else if ("png".equalsIgnoreCase(suffix)
                 || "gif".equalsIgnoreCase(suffix)
                 || "bmp".equalsIgnoreCase(suffix)
                 || "jpg".equalsIgnoreCase(suffix)
                 || "jpeg".equalsIgnoreCase(suffix)) {
             return BitmapFactory.decodeResource(cxt.getResources(),
-                    R.drawable.icon_file_image);
+                    R.drawable.icon_unknown);
         } else if ("mp4".equalsIgnoreCase(suffix)
                 || "avi".equalsIgnoreCase(suffix)
                 || "mov".equalsIgnoreCase(suffix)
@@ -110,16 +110,16 @@ public class FileUtils {
                 || "3gp".equalsIgnoreCase(suffix)
                 || "mpg".equalsIgnoreCase(suffix)) {
             return BitmapFactory.decodeResource(cxt.getResources(),
-                    R.drawable.icon_files_vedio);
+                    R.drawable.icon_video);
         } else if ("mp3".equalsIgnoreCase(suffix)
                 || "wma".equalsIgnoreCase(suffix)
                 || "amr".equalsIgnoreCase(suffix)
                 || "ape".equalsIgnoreCase(suffix)
                 || "wav".equalsIgnoreCase(suffix)) {
             return BitmapFactory.decodeResource(cxt.getResources(),
-                    R.drawable.icon_attach_audio);
+                    R.drawable.icon_music);
         }
         return BitmapFactory.decodeResource(cxt.getResources(),
-                R.drawable.file_icon_unknow);
+                R.drawable.icon_unknown);
     }
 }
