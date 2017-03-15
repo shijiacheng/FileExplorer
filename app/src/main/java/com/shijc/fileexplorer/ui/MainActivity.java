@@ -57,8 +57,13 @@ public class MainActivity extends BaseActivity {
         mAdapter.setListener(new ClassifyFileAdapter.ClickListener() {
             @Override
             public void onClick(ClassifyFileResult result) {
-                Intent intent = new Intent(mContext, ClassifyActivity.class);
-                intent.putExtra(Constants.KEY_EXTRA_FILE_TYPE, result.getKey());
+                Intent intent = new Intent();
+                if (result.getKey() == ClassifyFileResult.PICTURE){
+                    intent.setClass(mContext,GalleryActivity.class);
+                }else {
+                    intent.setClass(mContext, ClassifyActivity.class);
+                    intent.putExtra(Constants.KEY_EXTRA_FILE_TYPE, result.getKey());
+                }
                 startActivity(intent);
             }
         });

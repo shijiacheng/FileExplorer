@@ -2,4 +2,5 @@
     <string name="app_name">FileExplorer</string>
     <string name="sdcard_rootpath_name">内置存储卡</string>
     <string name="warn_service_repose_isnull">服务端正忙,请稍后重试</string>
+    <string name="all_photo">全部照片</string>
 </resources>
