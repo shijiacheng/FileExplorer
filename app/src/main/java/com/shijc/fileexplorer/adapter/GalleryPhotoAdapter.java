@@ -51,7 +51,7 @@ public class GalleryPhotoAdapter extends BaseAdapter{
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         final ViewHolder viewHolder;
         final PhotoInfo result = list.get(position);
         if (null == convertView) {
@@ -63,6 +63,15 @@ public class GalleryPhotoAdapter extends BaseAdapter{
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener!=null){
+                    listener.onPhotoClick(v,position);
+                }
+            }
+        });
+
         PicassoUtils.loadImageViewSize(mContext,result.getPhotoPath(),mRowWidth,mRowWidth,viewHolder.ivThumb);
 
 
@@ -73,5 +82,14 @@ public class GalleryPhotoAdapter extends BaseAdapter{
     static class ViewHolder {
         private ImageView ivThumb;
 
+    }
+
+    public interface OnPreviewListener{
+        void onPhotoClick(View view,int position);
+    }
+    private OnPreviewListener listener;
+
+    public void setListener(OnPreviewListener listener) {
+        this.listener = listener;
     }
 }

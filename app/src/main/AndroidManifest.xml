@@ -4,8 +4,8 @@
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
-    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,7 +22,8 @@
         <activity android:name=".ui.ClassifyActivity" />
         <activity android:name=".ui.DirectoryActivity" />
         <activity android:name=".ui.SearchFileActivity" />
-        <activity android:name=".ui.GalleryActivity"></activity>
+        <activity android:name=".ui.GalleryActivity" />
+        <activity android:name=".ui.GalleryPreviewActivity"></activity>
     </application>
 
 </manifest>

@@ -38,7 +38,7 @@
                 android:lines="1"
                 android:textColor="@color/main_text_color"
                 android:textSize="18sp"
-                android:text="ssss"/>
+                android:text="全部照片"/>
             <ImageView
                 android:layout_marginLeft="@dimen/padding_small"
                 android:layout_width="15dp"
@@ -83,11 +83,17 @@
         android:layout_height="match_parent"
         android:layout_below="@id/header_view"
         android:visibility="gone"
-        android:background="@color/colorAccent">
+        android:background="@color/main_bg_color">
 
         <ListView
+            android:id="@+id/lv_folder"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:cacheColorHint="@null"
+            android:divider="@null"
+            android:dividerHeight="3dp"
+            android:scrollbars="none"
+            android:listSelector="@android:color/transparent">
 
         </ListView>
 
