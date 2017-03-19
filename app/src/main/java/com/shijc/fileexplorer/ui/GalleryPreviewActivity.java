@@ -28,6 +28,7 @@ public class GalleryPreviewActivity extends BaseActivity {
     private GalleryPreviewAdapter mPreviewAdapter;
 
     private List<PhotoInfo> list;
+    private int curIndex;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,9 +39,14 @@ public class GalleryPreviewActivity extends BaseActivity {
         Intent intent = getIntent();
         Bundle bundle = getIntent().getExtras();
         list = (List<PhotoInfo>) bundle.getSerializable("photolist");
+        curIndex = bundle.getInt("curIndex");
 
         mPreviewAdapter = new GalleryPreviewAdapter(mContext,list);
         vpPhotoList.setAdapter(mPreviewAdapter);
+
+        if (curIndex>0){
+            vpPhotoList.setCurrentItem(curIndex,false);
+        }
 
         vpPhotoList.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

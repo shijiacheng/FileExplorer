@@ -3,14 +3,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
-        android:id="@+id/header_view"
-        layout="@layout/widget_header_view"/>
+
 
     <com.shijc.fileexplorer.widget.FixedViewPager
-        android:layout_below="@id/header_view"
         android:id="@+id/vp_photo_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
+    <include
+        android:visibility="gone"
+        android:id="@+id/header_view"
+        layout="@layout/widget_header_view"/>
 
 </RelativeLayout>

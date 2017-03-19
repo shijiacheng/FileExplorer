@@ -3,4 +3,12 @@
     <string name="sdcard_rootpath_name">内置存储卡</string>
     <string name="warn_service_repose_isnull">服务端正忙,请稍后重试</string>
     <string name="all_photo">全部照片</string>
+
+
+    <string name="ex_file_not_found">没有找到该文件</string>
+    <string name="ex_file_not_open">无法打开当前格式文件</string>
+    <string name="the_file_not_open">请到本地文件夹中打开：%s</string>
+
+    <!-- 文件操作相关的异常 -->
+    <string name="ex_file_file_not_found">没有找到文件</string>
 </resources>

@@ -21,6 +21,7 @@ import com.shijc.fileexplorer.common.Constants;
 import com.shijc.fileexplorer.common.HttpConnectException;
 import com.shijc.fileexplorer.model.ClassifyFileResult;
 import com.shijc.fileexplorer.util.CollectionUtils;
+import com.shijc.fileexplorer.util.FileUtils;
 import com.shijc.fileexplorer.widget.RotateImageView;
 
 import java.io.File;
@@ -122,19 +123,8 @@ public class ClassifyActivity extends BaseActivity {
 
         if (f.isFile()) {
             try {
-//                if (mSelectedFiles.contains(f.getAbsolutePath())) {
-//                    mSelectedFiles.remove(f.getAbsolutePath());
-//                    mcompleteButton.setText(String.format(getString(R.string.files_checked_maxcount), mCount + mSelectedFiles.size(),maxCount));
-//                } else {
-//                    if (mSelectedFiles.size() + mCount < maxCount) {
-//                        mSelectedFiles.add(f.getAbsolutePath());
-//                        mcompleteButton.setText(String.format(getString(R.string.files_checked_maxcount), mCount+ mSelectedFiles.size(),maxCount));
-//                    } else {
-//                        FoxToast.showWarning(this,String.format(getString(R.string.choose_file_format),maxCount), Toast.LENGTH_SHORT);
-//                    }
-//
-//                }
-                madapter.notifyDataSetChanged();
+
+                FileUtils.openLocalFile(f.getAbsolutePath(),mContext);
             } catch (ActivityNotFoundException e) {
                 e.printStackTrace();
             }

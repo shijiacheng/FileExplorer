@@ -103,6 +103,7 @@ public class GalleryActivity extends BaseActivity {
                 Intent intent = new Intent(mContext,GalleryPreviewActivity.class);
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("photolist", (Serializable) mCurPhotoList);
+                bundle.putInt("curIndex",position);
                 intent.putExtras(bundle);
                 startActivity(intent);
             }
