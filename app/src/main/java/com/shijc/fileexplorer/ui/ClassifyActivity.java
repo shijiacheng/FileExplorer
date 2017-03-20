@@ -1,5 +1,6 @@
 package com.shijc.fileexplorer.ui;
 
+import android.app.Activity;
 import android.content.ActivityNotFoundException;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -9,7 +10,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -22,6 +22,7 @@ import com.shijc.fileexplorer.common.HttpConnectException;
 import com.shijc.fileexplorer.model.ClassifyFileResult;
 import com.shijc.fileexplorer.util.CollectionUtils;
 import com.shijc.fileexplorer.util.FileUtils;
+import com.shijc.fileexplorer.widget.BottomPopuWindow;
 import com.shijc.fileexplorer.widget.RotateImageView;
 
 import java.io.File;
@@ -90,9 +91,11 @@ public class ClassifyActivity extends BaseActivity {
         madapter = new DirectoryAdapter(this, mfiles, mSelectedFiles);
         madapter.setSelect(false);
         mListView.setAdapter(madapter);
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+
+        madapter.setListener(new DirectoryAdapter.FileOperateListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onFileClick(View view, int position, File file) {
                 File mselectedFile = madapter.getItem(position);
                 if (mselectedFile != null) {
 //                    if (viewModel == MODEL_PREVIEW){
@@ -106,7 +109,18 @@ public class ClassifyActivity extends BaseActivity {
                     open(mselectedFile);
                 }
             }
+
+            @Override
+            public void onFileEditClick(View view, int position, File file) {
+
+            }
+
+            @Override
+            public void onFileLongClick(View view, int position, File file) {
+
+            }
         });
+
         mListView.setEmptyView(mNoTextView);
     }
 
@@ -124,7 +138,9 @@ public class ClassifyActivity extends BaseActivity {
         if (f.isFile()) {
             try {
 
-                FileUtils.openLocalFile(f.getAbsolutePath(),mContext);
+                showFileOpenWindow(mContext,f,mListView);
+
+
             } catch (ActivityNotFoundException e) {
                 e.printStackTrace();
             }
@@ -358,6 +374,36 @@ public class ClassifyActivity extends BaseActivity {
         cursor = null;
 
         return zips;
+
+    }
+
+
+    private BottomPopuWindow deleteWindow;
+
+    private void showFileOpenWindow(Context context, final File file, View view) {
+
+        if (deleteWindow==null){
+            deleteWindow = new BottomPopuWindow((Activity) context,view);
+            deleteWindow.setTitle("删除提示");
+            deleteWindow.setContent("您确定删除这张卡片吗？");
+            deleteWindow.setOkClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    FileUtils.openLocalFile(file.getAbsolutePath(),mContext);
+                    deleteWindow.dismiss();
+                }
+            });
+
+            deleteWindow.setCancelClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    deleteWindow.dismiss();
+                }
+            });
+
+        }
+
+        deleteWindow.show();
 
     }
 }

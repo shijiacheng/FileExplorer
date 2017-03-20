@@ -94,7 +94,7 @@ public class DirectoryAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         ListHolder mListHolder = null;
         if (convertView == null) {
             convertView = LayoutInflater.from(mcontext).inflate(R.layout.item_directory, null);
@@ -109,7 +109,7 @@ public class DirectoryAdapter extends BaseAdapter {
         } else {
             mListHolder = (ListHolder) convertView.getTag();
         }
-        File f = this.getItem(position);
+        final File f = this.getItem(position);
         mListHolder.mfileName.setText(f.getName());
         if (!isSelect){
             mListHolder.mfileSelect.setVisibility(View.GONE);
@@ -144,6 +144,25 @@ public class DirectoryAdapter extends BaseAdapter {
 
             }
         }
+
+        convertView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (listener!=null){
+                    listener.onFileClick(v,position,f);
+                }
+            }
+        });
+
+        convertView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if (listener!=null){
+                    listener.onFileLongClick(v,position,f);
+                }
+                return false;
+            }
+        });
 
         mListHolder.mfileTime.setText(this.getFileTime(f.lastModified()));
 
@@ -236,6 +255,15 @@ public class DirectoryAdapter extends BaseAdapter {
         View divider_size_time;
     }
 
+    public interface FileOperateListener{
+        void onFileClick(View view,int position,File file);
+        void onFileEditClick(View view,int position,File file);
+        void onFileLongClick(View view,int position,File file);
+    }
 
+    private FileOperateListener listener;
 
+    public void setListener(FileOperateListener listener) {
+        this.listener = listener;
+    }
 }
